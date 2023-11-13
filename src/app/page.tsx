@@ -3,22 +3,32 @@ import { Page } from "@/features/page";
 export default function Home() {
   return (
     <main className="p-24 print:p-0 bg-gray-50 print:bg-none h-max print:h-min space-y-12 print:space-y-0">
-      <Page>
-        <div className="bg-blue-500 text-white p-6 h-full flex justify-center">
-          <div className="text-center mt-64">
-            <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Fantastic Cover Page
-            </h1>
-            <p className="mt-6 text-base leading-7 text-blue-50">
-              Start something great with TailwindCSS document editing.
-            </p>
+      {[Cover, Stats, Stats].map((Content, idx, arr) => (
+        <>
+          <Page key={idx}>
+            <Content />
+          </Page>
+          <div className="print:hidden mx-auto text-center text-gray-400">
+            {idx < arr.length - 1 && `--- ${`Page ${idx + 2}`} ---`}
           </div>
-        </div>
-      </Page>
-      <Page>
-        <Stats />
-      </Page>
+        </>
+      ))}
     </main>
+  );
+}
+
+function Cover() {
+  return (
+    <div className="bg-blue-500 text-white p-6 h-full flex justify-center">
+      <div className="text-center mt-64">
+        <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          Fantastic Cover Page
+        </h1>
+        <p className="mt-6 text-base leading-7 text-blue-50">
+          Start something great with TailwindCSS document editing.
+        </p>
+      </div>
+    </div>
   );
 }
 
